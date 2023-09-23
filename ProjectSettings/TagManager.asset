@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SceneTransition
+  - Wind
   layers:
   - Default
   - TransparentFX
@@ -38,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Player
+    uniqueID: 860368769
+    locked: 0
+  - name: Characters
+    uniqueID: 1081330991
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

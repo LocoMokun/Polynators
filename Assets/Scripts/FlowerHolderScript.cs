@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+
 
 public class FlowerHolderScript : MonoBehaviour
 {
@@ -9,16 +11,60 @@ public class FlowerHolderScript : MonoBehaviour
     public List<COLORS.Hue> correctColors;
     public List<COLORS.Hue> currentColors;
 
+
     [SerializeField] private BreakableScript breakable;
 
-    // Start is called before the first frame update
+
+    private Animator cameraAnimator;
+
+    [Header("Editor Variables")]
+    [SerializeField] private FlagScriptableObject flagSO;
+    [SerializeField] private Animator flagAnimator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+
+    private bool updateSprites = false;
+
+
     void Start()
     {
-        foreach(Transform t in transform)
+
+        LoadSO();
+
+
+
+        cameraAnimator = FindObjectOfType<CameraControllerScript>().cameraController;
+
+        foreach (Transform t in transform)
         {
             t.GetComponent<BaseFlower>().callback.AddListener(CheckColors);
         }
     }
+
+    public void LoadSO()
+    {
+        correctColors = flagSO.flagHues;
+        spriteRenderer.sprite = flagSO.flagSprite;
+        flagAnimator.runtimeAnimatorController = flagSO.flagAnimator;
+    }
+
+    /*
+    public void OnValidate()
+    {
+        updateSprites = true; 
+
+    }
+
+
+    private void LateUpdate()
+    {
+        if (updateSprites)
+        {
+            LoadSO();
+            updateSprites = false;
+        }
+    }
+    */
 
     public void CheckColors()
     {
@@ -53,14 +99,34 @@ public class FlowerHolderScript : MonoBehaviour
 
             // Should only reach this point if all colors are correct
             // Debug.Log("Colors match");
-            if (breakable != null)
-                breakable.Break();
+            if (breakable != null && cameraAnimator != null)
+            {
+                StartCoroutine(Break());
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    IEnumerator Break()
     {
-        
+        FindObjectOfType<MusicPlayerScript>().SetChangeParam(1.0f);
+
+        EventManager.TriggerEvent(EventNames.PAUSE_EVENT, true);
+
+        cameraAnimator.SetBool("honeycomb", true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        breakable.Break();
+
+        yield return new WaitForSeconds(1.5f);
+
+        cameraAnimator.SetBool("honeycomb", false);
+
+
+        EventManager.TriggerEvent(EventNames.PAUSE_EVENT, false);
+
     }
+
+
 }

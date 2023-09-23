@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0fad2c86f2e435580b36376f32efbc, type: 3}
+  m_Name: PanFlag
+  m_EditorClassIdentifier: 
+  flagHues: 020000000800000004000000
+  flagSprite: {fileID: -5494406128197036895, guid: 694843c32bf814ebd874e6c8141848ec, type: 3}
+  flagAnimator: {fileID: 9100000, guid: c722aa4d2d6fb46439c6c1ed873f6fb1, type: 2}

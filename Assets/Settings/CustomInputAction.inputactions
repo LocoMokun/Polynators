@@ -285,6 +285,17 @@
                 },
                 {
                     "name": "",
+                    "id": "42c67e73-1329-43d1-a91c-26d753a9322f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e9a23eee-dfcc-42c6-8b5a-a556b4a84f71",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
